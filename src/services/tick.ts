@@ -12,6 +12,12 @@ export function preventStop(){
     .on('SIGTERM', shutdown('SIGTERM'))
     .on('SIGINT', shutdown('SIGINT'))
     .on('uncaughtException', shutdown('uncaughtException'));
+
+    setInterval(async () => {
+        await axios.get(process.env.BASE_URL || "");
+        logger.info("Requesting the server...");
+    }, 300000)
+
 }
 
 function shutdown(signal : string) {
@@ -20,10 +26,6 @@ function shutdown(signal : string) {
         if (err) logger.error(err.stack || err);
         setTimeout(() => {
             logger.warn('...waited 5s, exiting.');
-
-            // prevent application shutdown
-            axios.get(process.env.BASE_URL || "");
-
             process.exit(err ? 1 : 0);
         }, 5000).unref();
     };
