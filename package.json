@@ -10,6 +10,8 @@
   "author": "adryanalencar <adryan.alencar@sevenfox.com.br>",
   "license": "ISC",
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.26.1",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -17,10 +19,10 @@
     "morgan": "^1.10.0",
     "node-cron": "^3.0.0",
     "starkbank": "^2.10.1",
-    "ts-node-dev": "^1.1.8",
-    "winston": "^3.6.0",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.2"
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.2",
+    "winston": "^3.6.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",

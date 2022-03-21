@@ -1,17 +1,18 @@
+import axios from "axios";
 import { logger } from "./logger";
 
-process
+/**
+ * 
+ * This code, will request the project URL when the application is closed.
+ * Thats will grant the application to be restarted, to not lost the CRON jobs. * 
+ */
+
+export function preventStop(){
+    process
     .on('SIGTERM', shutdown('SIGTERM'))
     .on('SIGINT', shutdown('SIGINT'))
     .on('uncaughtException', shutdown('uncaughtException'));
-
-
-export function startTick(){
-    setInterval(() => {
-        console.info(`[info][${new Date().toISOString()}] => Tick`);
-    }, 1000);
 }
-
 
 function shutdown(signal : string) {
     return (err : any) => {
@@ -19,6 +20,10 @@ function shutdown(signal : string) {
         if (err) logger.error(err.stack || err);
         setTimeout(() => {
             logger.warn('...waited 5s, exiting.');
+
+            // prevent application shutdown
+            axios.get(process.env.BASE_URL || "");
+
             process.exit(err ? 1 : 0);
         }, 5000).unref();
     };
