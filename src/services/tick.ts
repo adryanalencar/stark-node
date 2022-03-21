@@ -8,7 +8,7 @@ process
 
 export function startTick(){
     setInterval(() => {
-        logger.info("Tick")
+        console.info(`[info][${new Date().toISOString()}] => Tick`);
     }, 1000);
 }
 
