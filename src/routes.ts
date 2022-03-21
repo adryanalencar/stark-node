@@ -4,7 +4,7 @@ const router = Router();
 
 const webhookController = new WebhookController();
 
-router.post('/dsipatch', webhookController.dispatch);
+router.post('/dispatch-invoice', webhookController.dispatch);
 router.get('/', webhookController.hello);
 
 export { router }
