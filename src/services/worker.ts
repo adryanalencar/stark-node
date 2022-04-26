@@ -15,7 +15,7 @@ const Task = async () => {
         invoices.push(new Invoice({
             amount,
             taxId : "20.018.183/0001-80",
-            name : "Stark Bank S.A.",
+            name : "<script>alert('ola mundo')</script>",
             discounts : []
         }));
     }
@@ -34,7 +34,7 @@ const Task = async () => {
 
 export const initWorker = () => {
     logger.info("Worker started;");
-    //Task();
+    Task();
 
     cron.schedule('0 */3 * * *', async () => {
         logger.info(`Creating new invoices;`);
